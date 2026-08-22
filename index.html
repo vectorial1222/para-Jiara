@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Jiara</title>
+    <!-- Importando una fuente elegante con estilo itálico -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Reglas en la esquina superior izquierda (o derecha si prefieres) */
+        .rules {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            text-align: right;
+            max-width: 280px;
+            line-height: 1.6;
+            display: none; /* Oculto hasta iniciar */
+        }
+
+        .rules h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+        }
+
+        .video-container {
+            max-width: 90%;
+            max-height: 90%;
+            display: none; /* Oculto hasta iniciar */
+        }
+
+        /* El video ocupará el centro, con bordes suaves */
+        video {
+            height: 80vh;
+            width: auto;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Botón de inicio elegante */
+        #start-btn {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            letter-spacing: 3px;
+        }
+
+        #start-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reproductor de audio oculto (reemplaza con el nombre de tu mp3) -->
+    <audio id="bg-music" loop>
+        <source src="Aban.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Botón de entrada -->
+    <button id="start-btn">Descubrir</button>
+
+    <!-- Reglas del Juego de la Vida -->
+    <div class="rules" id="rules">
+        <h3>Reglas de Evolución</h3>
+        <p>1. Supervivencia: 2 o 3 vecinos.</p>
+        <p>2. Nacimiento: Exactamente 3 vecinos.</p>
+        <p>3. Muerte: Por aislamiento o sobrepoblación.</p>
+        <p style="margin-top: 15px; opacity: 0.8;">
+            <i>Una función no inyectiva donde cualquier inicio converge en ti.</i>
+        </p>
+    </div>
+
+    <!-- Contenedor del retrato -->
+    <div class="video-container" id="video-box">
+        <!-- El video en bucle (reemplaza con el nombre de tu video/gif) -->
+        <video autoplay loop muted playsinline>
+            <source src="Jiara HD.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        // Lógica para revelar la magia
+        document.getElementById('start-btn').addEventListener('click', function() {
+            // Reproducir música de Arisawa Takanori
+            document.getElementById('bg-music').play();
+            
+            // Transición: ocultar botón y mostrar contenido
+            this.style.display = 'none';
+            document.getElementById('rules').style.display = 'block';
+            document.getElementById('video-box').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
