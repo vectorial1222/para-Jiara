@@ -3,215 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retrato</title>
-    <!-- Importando fuente clásica y elegante -->
+    <title>Para Jiara</title>
+    <!-- Importando una fuente elegante con estilo itálico -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400;1,600&display=swap');
-
-        * {
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #000000;
-            color: #ffffff;
+            background-color: #000;
+            color: #fff;
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            min-height: 100vh;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
-            position: relative;
+            height: 100vh;
         }
 
-        /* Botón de inicio centrado */
-        #start-btn {
-            background: transparent;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            padding: 14px 40px;
-            font-size: 1.2rem;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            cursor: pointer;
-            transition: all 0.5s ease;
-            letter-spacing: 4px;
-            border-radius: 2px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
-        #start-btn:hover {
-            background: #ffffff;
-            color: #000000;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
-        }
-
-        /* Reglas e Historia del Juego en la esquina superior derecha */
+        /* Reglas en la esquina superior izquierda (o derecha si prefieres) */
         .rules {
             position: absolute;
-            top: 25px;
-            right: 30px;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.8);
+            top: 30px;
+            right: 40px;
+            font-size: 0.9rem;
+            opacity: 0.6;
             text-align: right;
-            max-width: 320px;
-            line-height: 1.5;
-            display: none;
-            backdrop-filter: blur(5px);
-            background: rgba(10, 10, 10, 0.5);
-            padding: 16px;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            animation: fadeIn 1.5s ease forwards;
+            max-width: 280px;
+            line-height: 1.6;
+            display: none; /* Oculto hasta iniciar */
         }
 
         .rules h3 {
             margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             letter-spacing: 1px;
-            color: #ffffff;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 4px;
-        }
-
-        .rules p {
-            margin: 5px 0;
-        }
-
-        .rules ul {
-            margin: 6px 0;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .rules li {
-            margin-bottom: 4px;
-        }
-
-        /* Contenedor principal: Video + Frase */
-        .main-content {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: fadeIn 2s ease forwards;
-            max-width: 900px;
-            width: 100%;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
         }
 
         .video-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 25px;
+            max-width: 90%;
+            max-height: 90%;
+            display: none; /* Oculto hasta iniciar */
         }
 
+        /* El video ocupará el centro, con bordes suaves */
         video {
-            max-height: 62vh;
-            max-width: 90vw;
+            height: 80vh;
             width: auto;
             border-radius: 4px;
-            box-shadow: 0 0 35px rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
         }
 
-        /* Frase debajo del retrato */
-        .quote {
-            font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.9);
-            text-align: center;
-            max-width: 720px;
-            line-height: 1.7;
-            letter-spacing: 0.5px;
-            padding: 0 15px;
+        /* Botón de inicio elegante */
+        #start-btn {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            letter-spacing: 3px;
         }
 
-        /* Formato especial para el símbolo matemático */
-        .math {
-            font-family: 'Times New Roman', Times, serif;
-            font-style: italic;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: #ffffff;
-            padding: 0 4px;
-            font-size: 1.15rem;
-            white-space: nowrap;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Adaptación para pantallas de celular */
-        @media (max-width: 768px) {
-            .rules {
-                position: relative;
-                top: 0;
-                right: 0;
-                max-width: 90%;
-                text-align: center;
-                margin-bottom: 20px;
-            }
-            video {
-                max-height: 48vh;
-            }
-            .quote {
-                font-size: 0.95rem;
-            }
+        #start-btn:hover {
+            background: #fff;
+            color: #000;
         }
     </style>
 </head>
 <body>
 
-    <!-- Reproductor de audio de fondo -->
-    <audio id="bg-music" loop preload="auto">
-        <source src="aban_arisawa.mp3" type="audio/mpeg">
+    <!-- Reproductor de audio oculto (reemplaza con el nombre de tu mp3) -->
+    <audio id="bg-music" loop>
+        <source src="Aban.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Botón de descubrimiento inicial -->
+    <!-- Botón de entrada -->
     <button id="start-btn">Descubrir</button>
 
-    <!-- Explicación e historia del Juego de la Vida -->
+    <!-- Reglas del Juego de la Vida -->
     <div class="rules" id="rules">
-        <h3>El Juego de la Vida</h3>
-        <p>Diseñado en 1970 por el matemático británico <strong>John Horton Conway</strong>, es un autómata celular donde patrones deterministas generan comportamientos emergentes.</p>
-        <p style="margin-top: 8px; font-weight: 600; color: #fff;">Reglas de evolución:</p>
-        <ul>
-            <li>• <strong>Supervivencia:</strong> Una célula viva con 2 o 3 vecinas permanece viva.</li>
-            <li>• <strong>Nacimiento:</strong> Una célula muerta con exactamente 3 vecinas cobra vida.</li>
-            <li>• <strong>Muerte:</strong> Ocurre por aislamiento (&lt;2) o sobrepoblación (&gt;3).</li>
-        </ul>
+        <h3>Reglas de Evolución</h3>
+        <p>1. Supervivencia: 2 o 3 vecinos.</p>
+        <p>2. Nacimiento: Exactamente 3 vecinos.</p>
+        <p>3. Muerte: Por aislamiento o sobrepoblación.</p>
+        <p style="margin-top: 15px; opacity: 0.8;">
+            <i>Una función no inyectiva donde cualquier inicio converge en ti.</i>
+        </p>
     </div>
 
-    <!-- Retrato y Frase en la parte central -->
-    <div class="main-content" id="main-content">
-        <div class="video-container">
-            <video autoplay loop muted playsinline>
-                <source src="retrato_jiara_ultra_HD.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="quote">
-            "Aunque no exista un <span class="math">f : X ↛ Y</span> y mil caminos caóticos intenten explicar el desorden, al final, todas las trayectorias del universo colapsan en la única certeza hermosa que le da sentido a todo..."
-        </div>
+    <!-- Contenedor del retrato -->
+    <div class="video-container" id="video-box">
+        <!-- El video en bucle (reemplaza con el nombre de tu video/gif) -->
+        <video autoplay loop muted playsinline>
+            <source src="Jiara HD.mp4" type="video/mp4">
+        </video>
     </div>
 
     <script>
+        // Lógica para revelar la magia
         document.getElementById('start-btn').addEventListener('click', function() {
-            var audio = document.getElementById('bg-music');
-            audio.play().catch(function(err) {
-                console.log("Audio play deferred", err);
-            });
+            // Reproducir música de Arisawa Takanori
+            document.getElementById('bg-music').play();
             
+            // Transición: ocultar botón y mostrar contenido
             this.style.display = 'none';
             document.getElementById('rules').style.display = 'block';
-            document.getElementById('main-content').style.display = 'flex';
+            document.getElementById('video-box').style.display = 'block';
         });
     </script>
 </body>
