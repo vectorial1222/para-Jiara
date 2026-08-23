@@ -84,16 +84,25 @@
     </audio>
 
     <!-- Botón de entrada -->
-    <button id="start-btn">Descubrir</button>
+    <button id="start-btn">Inicio</button>
 
     <!-- Reglas del Juego de la Vida -->
     <div class="rules" id="rules">
-        <h3>Reglas de Evolución</h3>
-        <p>1. Supervivencia: 2 o 3 vecinos.</p>
-        <p>2. Nacimiento: Exactamente 3 vecinos.</p>
-        <p>3. Muerte: Por aislamiento o sobrepoblación.</p>
+        <h3>El Juego de la Vida de Conway</h3>
+        <p>El Juego de la Vida de Conway es un autómata celular creado por el matemático británico John Horton Conway en 1970. No es realmente un juego con jugadores: es un sistema matemático que evoluciona automáticamente a partir de una configuración inicial.</p>
+        <p>En este caso, se tiene una cuadricula de 280x280, donde:
+        - Un cuadradito negro es una célula viva
+        - Un cuadradito blanco es una célula muerta</p>
+        <p>Cada célula observa sus 8 vecinos y, en cada generación, se aplican solamente cuatro reglas:
+            Supervivencia: una célula viva con 2 o 3 vecinos vivos permanece viva.
+            Soledad: con menos de 2 vecinos vivos, muere.
+            Sobrepoblación: con más de 3 vecinos vivos, muere.
+            Nacimiento: una célula muerta con exactamente 3 vecinos vivos se convierte en viva.
+        Y entonces… todo vuelve a repetirse generación tras generación.</p>
+        <p>Lo hermoso es que nadie le dice a las células qué deben formar. Por eso El Juego de la Vida de Conway es uno de esos ejemplos maravillosos donde una regla local extremadamente sencilla puede producir comportamiento global extraordinariamente complejo y caótico.</p>
+        
         <p style="margin-top: 15px; opacity: 0.8;">
-            <i>Una función no inyectiva donde cualquier inicio converge en ti.</i>
+            <i>"Aunque no exista un <span class="math">f : X ↛ Y</span> y mil caminos caóticos intenten explicar el desorden, al final, todas las trayectorias del universo colapsan en la única certeza hermosa que le da sentido a todo..."</i>
         </p>
     </div>
 
