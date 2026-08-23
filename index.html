@@ -3,82 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Jiara</title>
-    <!-- Importando una fuente elegante con estilo itálico -->
+    <title>Retrato</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            overflow: hidden;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif; /* Fuente cambiada a Arial */
+            overflow-x: hidden;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-        }
-
-        /* Reglas en la esquina superior izquierda (o derecha si prefieres) */
-        .rules {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            font-size: 0.9rem;
-            opacity: 0.6;
-            text-align: right;
-            max-width: 280px;
-            line-height: 1.6;
-            display: none; /* Oculto hasta iniciar */
-        }
-
-        .rules h3 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 5px;
-        }
-
-        .video-container {
-            max-width: 90%;
-            max-height: 90%;
-            display: none; /* Oculto hasta iniciar */
-        }
-
-        /* El video ocupará el centro, con bordes suaves */
-        video {
-            height: 80vh;
-            width: auto;
-            border-radius: 4px;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            min-height: 100vh;
         }
 
         /* Botón de inicio elegante */
         #start-btn {
             background: transparent;
-            color: #fff;
-            border: 1px solid #fff;
-            padding: 12px 35px;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            padding: 14px 40px;
             font-size: 1.2rem;
-            font-family: inherit;
+            font-family: Arial, sans-serif;
             cursor: pointer;
             transition: all 0.4s ease;
             letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         #start-btn:hover {
-            background: #fff;
-            color: #000;
+            background: #ffffff;
+            color: #000000;
+        }
+
+        /* Contenedor principal oculto hasta el clic */
+        #main-content {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Formato de las reglas (Esquina superior derecha en PC) */
+        .rules {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 0.9rem;
+            color: #ffffff;
+            max-width: 380px;
+            line-height: 1.5;
+            background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para no perder legibilidad */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rules h3 {
+            margin-top: 0;
+            font-size: 1.15rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .rules p {
+            margin: 8px 0;
+        }
+
+        .rules ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        .rules li {
+            margin-bottom: 6px;
+        }
+
+        /* Frase especial */
+        .quote {
+            margin-top: 18px;
+            font-style: italic;
+            opacity: 0.9;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .math {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        /* Contenedor del video */
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        video {
+            max-height: 85vh;
+            max-width: 90vw;
+            border-radius: 4px;
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.08);
+        }
+
+        /* =========================================
+           ADAPTACIÓN PARA CELULARES (Responsive)
+           ========================================= */
+        @media (max-width: 850px) {
+            #main-content {
+                justify-content: flex-start;
+                padding: 20px 0;
+            }
+            .video-container {
+                height: auto;
+                margin-top: 10px;
+                order: 2; /* Pone el video debajo del texto en celular */
+            }
+            video {
+                max-height: 50vh;
+            }
+            .rules {
+                position: relative;
+                top: 0;
+                right: 0;
+                max-width: 90%;
+                margin: 0 auto;
+                order: 1; /* Pone el texto arriba del video en celular */
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Reproductor de audio oculto (reemplaza con el nombre de tu mp3) -->
+    <!-- Reproductor de audio oculto -->
     <audio id="bg-music" loop>
         <source src="Aban.mp3" type="audio/mpeg">
     </audio>
@@ -86,44 +161,56 @@
     <!-- Botón de entrada -->
     <button id="start-btn">Inicio</button>
 
-    <!-- Reglas del Juego de la Vida -->
-    <div class="rules" id="rules">
-        <h3>El Juego de la Vida de Conway</h3>
-        <p>El Juego de la Vida de Conway es un autómata celular creado por el matemático británico John Horton Conway en 1970. No es realmente un juego con jugadores: es un sistema matemático que evoluciona automáticamente a partir de una configuración inicial.</p>
-        <p>En este caso, se tiene una cuadricula de 280x280, donde:
-        - Un cuadradito negro es una célula viva
-        - Un cuadradito blanco es una célula muerta</p>
-        <p>Cada célula observa sus 8 vecinos y, en cada generación, se aplican solamente cuatro reglas:
-            Supervivencia: una célula viva con 2 o 3 vecinos vivos permanece viva.
-            Soledad: con menos de 2 vecinos vivos, muere.
-            Sobrepoblación: con más de 3 vecinos vivos, muere.
-            Nacimiento: una célula muerta con exactamente 3 vecinos vivos se convierte en viva.
-        Y entonces… todo vuelve a repetirse generación tras generación.</p>
-        <p>Lo hermoso es que nadie le dice a las células qué deben formar. Por eso El Juego de la Vida de Conway es uno de esos ejemplos maravillosos donde una regla local extremadamente sencilla puede producir comportamiento global extraordinariamente complejo y caótico.</p>
+    <!-- Contenedor general que aparece al hacer clic -->
+    <div id="main-content">
         
-        <p style="margin-top: 15px; opacity: 0.8;">
-            <i>"Aunque no exista un <span class="math">f : X ↛ Y</span> y mil caminos caóticos intenten explicar el desorden, al final, todas las trayectorias del universo colapsan en la única certeza hermosa que le da sentido a todo..."</i>
-        </p>
-    </div>
+        <!-- Reglas del Juego de la Vida -->
+        <div class="rules">
+            <h3>El Juego de la Vida de Conway</h3>
+            <p>El Juego de la Vida de Conway es un autómata celular creado por el matemático británico John Horton Conway en 1970. No es realmente un juego con jugadores: es un sistema matemático que evoluciona automáticamente a partir de una configuración inicial.</p>
+            
+            <p>En este caso, se tiene una cuadrícula de 280x280, donde:</p>
+            <ul>
+                <li>Un cuadradito negro es una célula viva.</li>
+                <li>Un cuadradito blanco es una célula muerta.</li>
+            </ul>
+            
+            <p>Cada célula observa a sus 8 vecinos y, en cada generación, se aplican solamente cuatro reglas:</p>
+            <ul>
+                <li><strong>Supervivencia:</strong> una célula viva con 2 o 3 vecinos vivos permanece viva.</li>
+                <li><strong>Soledad:</strong> con menos de 2 vecinos vivos, muere.</li>
+                <li><strong>Sobrepoblación:</strong> con más de 3 vecinos vivos, muere.</li>
+                <li><strong>Nacimiento:</strong> una célula muerta con exactamente 3 vecinos vivos se convierte en viva.</li>
+            </ul>
+            
+            <p>Y entonces… todo vuelve a repetirse generación tras generación.</p>
+            
+            <p>Lo hermoso es que nadie le dice a las células qué deben formar. Por eso El Juego de la Vida de Conway es uno de esos ejemplos maravillosos donde una regla local extremadamente sencilla puede producir un comportamiento global extraordinariamente complejo y caótico.</p>
+            
+            <p class="quote">
+                "Aunque no exista un <span class="math">f : X ↛ Y</span> y mil caminos caóticos intenten explicar el desorden, al final, todas las trayectorias del universo colapsan en la única certeza hermosa que le da sentido a todo..."
+            </p>
+        </div>
 
-    <!-- Contenedor del retrato -->
-    <div class="video-container" id="video-box">
-        <!-- El video en bucle (reemplaza con el nombre de tu video/gif) -->
-        <video autoplay loop muted playsinline>
-            <source src="Jiara HD.mp4" type="video/mp4">
-        </video>
+        <!-- Contenedor del retrato -->
+        <div class="video-container">
+            <!-- El video en bucle -->
+            <video autoplay loop muted playsinline>
+                <source src="Jiara HD.mp4" type="video/mp4">
+            </video>
+        </div>
+
     </div>
 
     <script>
         // Lógica para revelar la magia
         document.getElementById('start-btn').addEventListener('click', function() {
-            // Reproducir música de Arisawa Takanori
+            // Reproducir música
             document.getElementById('bg-music').play();
             
-            // Transición: ocultar botón y mostrar contenido
+            // Transición: ocultar botón y mostrar el contenido principal
             this.style.display = 'none';
-            document.getElementById('rules').style.display = 'block';
-            document.getElementById('video-box').style.display = 'block';
+            document.getElementById('main-content').style.display = 'flex';
         });
     </script>
 </body>
